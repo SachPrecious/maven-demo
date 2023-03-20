@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set variables for Nexus URL, repository, username, and password
-NEXUS_URL="http://10.101.16.48:8081"
+NEXUS_URL="https://10.101.16.48:8081"
 REPO_NAME="maven-snapshots"
 USERNAME="admin"
 PASSWORD="admin"
