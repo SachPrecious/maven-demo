@@ -10,7 +10,7 @@ MAVEN_SETTINGS=.m2/setting.xml
 # Set path to JAR file and artifact ID
 JAR_FILE="./target/devops-integration.jar"
 ARTIFACT_ID="devops-integration"
--s ${MAVEN_SETTINGS}
+
 
 # Run Maven deploy command to push JAR file to Nexus repository
 mvn -s ${MAVEN_SETTINGS} deploy:deploy-file \
