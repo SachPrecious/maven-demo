@@ -43,11 +43,6 @@
 
 
 
-		<dependency>
-			<groupId>com.example</groupId>
-			<artifactId>automation</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 
 
 
@@ -68,6 +63,25 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.5.1</version>
+				<executions>
+					<execution>
+						<id>default-deploy</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<serverId>nexus</serverId>
+					<nexusUrl>http://10.101.16.48:8081/repository/maven-central</nexusUrl>
+					<skipStaging>true</skipStaging>
+				</configuration>
 			</plugin>
 		</plugins>
 		<finalName>devops-integration</finalName>
