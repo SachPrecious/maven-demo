@@ -19,6 +19,20 @@
 
 	
 
+ <distributionManagement>
+		<repository>
+			<id>maven-snapshots</id>
+			<layout>default</layout>
+			<url>http://10.101.16.48:8081/repository/maven-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>maven-releases</id>
+			<layout>default</layout>
+			<url>http://10.101.16.48:8081/repository/maven-snapshots/</url>
+
+		</snapshotRepository>
+</distributionManagement>
+
 
 
 	<dependencies>
@@ -27,6 +41,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 
 		</dependency>
+
 
 
 
