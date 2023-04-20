@@ -14,7 +14,7 @@ pipeline {
       }
       post {
         always {
-          mail bcc: '', body: 'Test Message', cc: 'sachithram149@gmail.com', from: '', replyTo: '', subject: 'Test', to: 'sachithramanamperi@gmail.com'
+          mail bcc: '', body: 'Test Message', cc: '', from: 'sachithram149@gmail.com', replyTo: '', subject: 'Test', to: 'sachithramanamperi@gmail.com'
         }
       }
 
