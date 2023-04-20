@@ -12,13 +12,15 @@ pipeline {
         sh 'chmod +x ./powershell-script.ps1'
         sh "docker run -i --rm -v ${WORKSPACE}:/app -w /app mcr.microsoft.com/powershell pwsh -File /app/powershell-script.ps1 "
       }
-    }
-    stage('Send Email') {
-      steps {
-        emailext body: "${BUILD_LOG, maxLines=99999}", 
-                 subject: "Powershell Script Output - Build #${BUILD_NUMBER}", 
-                 to: "sachithram149@gmail.com"
+      post {
+        always {
+          emailext body: "${BUILD_LOG, maxLines=99999}", 
+               subject: "Powershell Script Output - Build #${BUILD_NUMBER}", 
+               to: "sachithram149@gmail.com"
+        }
       }
+
     }
+    
   }
 }
