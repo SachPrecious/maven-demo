@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('version') {
       steps {
-        sh 'pwsh --version'
+        sh 'docker run -i --rm -v ${WORKSPACE}:app -w /app lts-7.2-alpine-3.14 pwsh --version'
       }
     }
     stage('Run Powershell Script') {
