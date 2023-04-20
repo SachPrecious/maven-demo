@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Run Powershell Script') {
       steps {
-        sh 'pwsh powershell-script.ps1'
+        sh 'docker run -i --rm -v ${WORKSPACE}:app -w /app lts-7.2-alpine-3.14 pwsh powershell-script.ps1'
       }
     }
   }
