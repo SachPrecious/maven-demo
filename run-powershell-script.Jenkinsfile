@@ -14,9 +14,7 @@ pipeline {
       }
       post {
         always {
-          emailext body: "${BUILD_LOG, maxLines=99999}", 
-               subject: "Powershell Script Output - Build #${BUILD_NUMBER}", 
-               to: "sachithram149@gmail.com"
+          mail bcc: '', body: 'Test Message', cc: 'sachithram149@gmail.com', from: '', replyTo: '', subject: 'Test', to: 'sachithramanamperi@gmail.com'
         }
       }
 
