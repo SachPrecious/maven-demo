@@ -1,0 +1,50 @@
+pipeline {
+    agent any
+    stages {
+        stage('Clone Repository') {
+            steps {
+                script {
+                    checkout([
+                            $class: 'GitSCM',
+                            branches: [[name: "*/main"]],
+                            doGenerateSubmoduleConfigurations: false,
+                            extensions: [],
+                            submoduleCfg: [],
+                            userRemoteConfigs: [[credentialsId: 'github',         
+                                                 url: 'https://github.com/SachPrecious/maven-demo.git']]
+                             ])
+                   }
+                 }         
+        } 
+        stage('Check Version From Pom.xml') {
+            steps {
+                script {
+                    def VERSION_TAG = sh (returnStdout: true, script: """
+                            #!/bin/bash
+                            version=\$(sed -n 's/.*<version>\\(.*\\)<\\/version>.*/\\1/p' pom.xml | sed -n '2p')
+                            if [ "\$(echo "\$version" | grep -c "rc")" -ne 0 ]; then
+                              message="Error: \$version contains 'rc' and does not contain 'SNAPSHOT'"
+                              echo "\$message"
+                              exit 1;
+                            elif [ "\$(echo "\$version" | grep -c "SNAPSHOT")" -eq 0 ]; then
+                              message="Error: \$version does not contain the string 'SNAPSHOT'"
+                              echo "\$message"
+                              exit 1;
+                            fi
+                                 """)
+                   
+                }
+            }
+            post {
+                failure {
+                    script {
+                        mail(to: 'sachithramanamperi@gmail.com',
+                             subject: "Jenkins Build Failed",
+                             body: "SNAPSHOT-NOT_FOUND")
+                    }
+                }
+            }
+        }
+        
+    }
+}
