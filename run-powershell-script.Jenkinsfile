@@ -1,6 +1,13 @@
 pipeline {
   agent any
   stages {
+  stage('Build Maven'){
+            steps{
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SachPrecious/maven-demo.git']])
+                
+
+            }
+        }
     stage('version') {
       steps {
         sh "docker run -i --rm -v ${WORKSPACE}:/app -w /app mcr.microsoft.com/powershell pwsh --version"
