@@ -36,14 +36,29 @@ pipeline {
                 }
             }
             post {
-                failure {
-                    script {
-                        mail(to: 'sachithramanamperi@gmail.com',
-                             subject: "Jenkins Build Failed",
-                             body: "SNAPSHOT-NOT_FOUND")
-                    }
+        failure {
+            script {
+                mail (to: 'sachithram149@gmail.com',
+                        subject: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) failed",
+                        body: "Please visit ${env.BUILD_URL} for further information"
+                );
                 }
             }
+         success {
+             script {
+                mail (to: 'sachithramanamperi@gmail.com',
+                        subject: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) success.",
+                        body: "Please visit ${env.BUILD_URL} for further information.",
+
+
+                  );
+                }
+          }      
+    }
+            
+            
+            
+            
         }
         
     }
