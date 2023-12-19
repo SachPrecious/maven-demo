@@ -9,3 +9,5 @@ class AutomationApplicationTests {
 	@Test
 	void contextLoads() {
 	}
+
+}
